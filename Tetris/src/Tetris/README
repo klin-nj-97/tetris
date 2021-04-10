@@ -1,0 +1,47 @@
+README Tetris
+
+HANDIN: (on time)
+
+DESIGN CHOICES:
+
+This Tetris has 6 classes.
+
+App is in charge of running the application.
+
+PaneOrganizer is the top-level object that contains the multiple panes of the 
+project and their children. The label changing based on whether the game is
+paused or has ended and the quit button are contained here since they are 
+not part of the animation pane. Although Game could contain the label
+components, and arguably do so more economically without association and
+inter-class communication, organizationally it makes more sense to be included
+in PaneOrganizer. Game is insofar as responsible for the animation pane.
+PaneOrganizer organizes the different panes, including the game pane and menu
+pane, which contains the label. BorderPane was chosen as the root node since it 
+can set different nodes to different positions. VBox was chosen as the type pane 
+for the menu pane for its vertical alignment.
+
+Game is the animation pane in charge of seeing Pieces fall and be manipulated by
+key inputs. It is associated with PaneOrganzier in order to be set in the center
+of BorderPane and to later call BorderPane's method to update the label upon
+pausing or game ending. The Timeline is in charge of seeing the Pieces fall, the
+MainKeyhandler is in charge of the physical movement/rotation of a Piece via
+key inputs, and the PauseKeyHandler has been instantiated as a separate key 
+handler responsible for pausing/unpausing the game. An Array has been chosen as
+the data structure to store squares for the board because the number of indices
+in this 2D structure is set throughout.
+
+Piece contains the seven different methods for adding the seven possible pieces.
+Similarly, an Array has been chosen as the data structure to store squares for 
+each Piece the board because the number of indices in this 1D structure are set
+throughout.
+
+TetrisSquare is the object type that both the board Array and Piece Array will
+implement.
+
+Constants contains constant values to clean up code throughout the other
+classes.
+
+KNOWN BUGS: In Game's clearLine method, the second nested for-loop appears to 
+not be required. However, if removed, Pieces occasionally lose focus to being 
+movable and rotatable. As a consequence, it has been left in to maximize game 
+functionality.
